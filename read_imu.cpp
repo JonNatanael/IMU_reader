@@ -195,19 +195,25 @@ int main(int argc, char* argv[]) {
     float step_delta = 0.3;
 
     int opt;
-    while ((opt = getopt(argc, argv, "a:t:d:")) != -1) {
+    while ((opt = getopt(argc, argv, "a:t:d:h")) != -1) {
         switch (opt) {
             case 'a':
+                fprintf(stderr, "case a");
                 axis = optarg[0];
                 break;
             case 't':
+                fprintf(stderr, "case t");
                 threshold = atof(optarg);
                 break;
             case 'd':
+                fprintf(stderr, "case d");
                 step_delta = atof(optarg);
                 break;
+            case 'h':
+                fprintf(stderr, "Usage: %s [-a axis] [-t threshold] [-d step_delta] [-h]\n", argv[0]);
+                exit(EXIT_SUCCESS);  // Exit successfully after printing help
             default:
-                fprintf(stderr, "Usage: %s [-a axis] [-t threshold] [-d step_delta]\n", argv[0]);
+                fprintf(stderr, "Usage: %s [-a axis] [-t threshold] [-d step_delta] [-h]\n", argv[0]);
                 exit(EXIT_FAILURE);
         }
     }
